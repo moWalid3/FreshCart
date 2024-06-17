@@ -1,1 +1,85 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@100;200;300;400;500;600;700;800;900&display=swap');
+:root {
+  --main-color: #0aad0a;
+  --light-color: #f0f3f2;
+  --text-color: #21313C;
+  --main-hover: #22b522;
+  --shadow: rgba(145, 158, 171, 0.2) 0px 2px 4px -1px,
+    rgba(145, 158, 171, 0.14) 0px 4px 5px 0px,
+    rgba(145, 158, 171, 0.12) 0px 1px 10px 0px;
+  --font-family: "Encode Sans Expanded", sans-serif;
+  --rating-color: #ffc908;
+  --main-transition: .2s;
+}
+
+body {
+  font-family: var(--font-family) !important;
+  background: url("../public/light-patten.svg");
+  color: var(--text-color);
+}
+.rating-color {
+  color: var(--rating-color);
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+a,
+a:hover {
+  color: black;
+  text-decoration: none;
+}
+.product:hover {
+  box-shadow: var(--shadow);
+  border: solid 1px var(--main-color);
+}
+.product .btn {
+  transition: transform 1s, opacity 1s;
+  transform: translateY(100%);
+  opacity: 0;
+}
+.product:hover .btn {
+  opacity: 1;
+  transform: translateY(0%);
+}
+.font-sm {
+  font-size: 14px;
+}
+.text-color {
+  color: var(--text-color);
+}
+.text-main {
+  color: var(--main-color);
+}
+.bg-main {
+  background-color: var(--main-color) !important;
+}
+button.bg-main {
+  transition: var(--main-transition);
+  &:hover {
+    background-color: var(--main-hover) !important;
+  }
+}
+.bg-main-light {
+  background-color: var(--light-color) !important;
+}
+
+input {
+  transition: var(--main-transition);
+  border-color: #9dde9d!important;
+  background-color: rgb(255, 255, 255, .2) !important;
+  &:focus {
+    border-color: var(--main-color) !important;
+    &::placeholder {
+      transition: var(--main-transition);
+      opacity: 0;
+    }
+  }
+}
+
+input.is-invalid {
+  border-color: #dc3545 !important;
+}
+input.is-valid {
+  border-color: #198754 !important;
+}

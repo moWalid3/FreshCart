@@ -1,0 +1,25 @@
+footer {
+  color: var(--text-color);
+  h3 {
+    letter-spacing: .7;
+  }
+  .apple-story,
+  .google-play {
+    width: 8rem;
+    cursor: pointer;
+  }
+  input {
+    flex: 1;
+  }
+  button {
+    width: fit-content;
+  }
+  @media (max-width: 575px) {
+    input {
+      width: 100%;
+    }
+    button {
+      width: fit-content;
+    }
+  }
+}

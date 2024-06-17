@@ -1,0 +1,91 @@
+
+<div class="signup w-75 mx-auto py-5">
+  <h3 class="mb-3">Register Now :</h3>
+  
+  <div *ngIf="errorMsg" class="alert alert-danger">{{errorMsg}}</div>
+
+  <form (ngSubmit)="handleRegister(registerForm)" [formGroup]="registerForm">
+
+    <div class="mb-2">
+      <label for="name">Name :</label>
+      <input formControlName="name" type="text" id="name"
+        [ngClass]="{
+          'is-invalid': registerForm.get('name')?.errors && registerForm.get('name')?.touched,
+          'is-valid': !registerForm.get('name')?.errors && registerForm.get('name')?.touched 
+        }" 
+        class="form-control shadow-sm" aria-describedby="validationNameFeedback"
+      >
+      <div id="validationNameFeedback" class="invalid-feedback">
+        <span *ngIf="registerForm.get('name')?.getError('minlength')">Min length is 3.</span>
+        <span *ngIf="registerForm.get('name')?.getError('required')">Name is required.</span>
+      </div>
+    </div>
+
+    <div class="mb-2">
+      <label for="email">Email :</label>
+      <input formControlName="email" type="email" id="email"
+        [ngClass]="{
+          'is-invalid': registerForm.get('email')?.errors && registerForm.get('email')?.touched,
+          'is-valid': !registerForm.get('email')?.errors && registerForm.get('email')?.touched 
+        }" 
+        class="form-control shadow-sm"  aria-describedby="validationEmailFeedback"
+      >
+      <div id="validationEmailFeedback" class="invalid-feedback">
+        <span *ngIf="registerForm.get('email')?.getError('pattern')">Invalid Email.</span>
+        <span *ngIf="registerForm.get('email')?.getError('required')">Email is required.</span>
+      </div>
+    </div>
+
+    <div class="mb-2">
+      <label for="password">Password :</label>
+      <input formControlName="password" type="password" id="password"
+        [ngClass]="{
+          'is-invalid': registerForm.get('password')?.errors && registerForm.get('password')?.touched,
+          'is-valid': !registerForm.get('password')?.errors && registerForm.get('password')?.touched 
+        }" 
+        class="form-control shadow-sm" aria-describedby="validationPasswordFeedback"
+      >
+      <div id="validationPasswordFeedback" class="invalid-feedback">
+        <span *ngIf="registerForm.get('password')?.getError('pattern')">Start with uppercase and at least 6 characters.</span>
+        <span *ngIf="registerForm.get('password')?.getError('required')">Password is required.</span>
+      </div>
+    </div>
+
+    <div class="mb-2">
+      <label for="rePassword">RePassword :</label>
+      <input formControlName="rePassword" type="password" id="rePassword"
+        [ngClass]="{
+          'is-invalid': registerForm.get('rePassword')?.errors && registerForm.get('rePassword')?.touched,
+          'is-valid': !registerForm.get('rePassword')?.errors && registerForm.get('rePassword')?.touched 
+        }" 
+        class="form-control shadow-sm"  
+      >
+      <div id="validationPasswordFeedback" class="invalid-feedback">
+        <span *ngIf="registerForm.get('rePassword')?.getError('pattern')">Start with uppercase and at least 6 characters.</span>
+        <span *ngIf="registerForm.get('rePassword')?.getError('required')">RePassword is required.</span>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="phone">Phone :</label>
+      <input formControlName="phone" type="tel" id="phone"
+        [ngClass]="{
+          'is-invalid': registerForm.get('phone')?.errors && registerForm.get('phone')?.touched,
+          'is-valid': !registerForm.get('phone')?.errors && registerForm.get('phone')?.touched 
+        }" 
+        class="form-control shadow-sm" aria-describedby="validationPhoneFeedback"
+      >
+      <div id="validationPhoneFeedback" class="invalid-feedback">
+        <span *ngIf="registerForm.get('phone')?.getError('pattern')">Enter a valid Egyptian phone.</span>
+        <span *ngIf="registerForm.get('phone')?.getError('required')">Phone is required.</span>
+      </div>
+    </div>
+
+    <button [disabled]="registerForm.invalid" type="submit" class="btn d-block ms-auto bg-main text-white">
+      <span *ngIf="isLoading" class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+      <span *ngIf="!isLoading">Register</span>
+    </button>
+
+  </form>
+
+</div>
