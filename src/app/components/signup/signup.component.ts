@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
@@ -8,16 +8,26 @@ import { Router } from '@angular/router';
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })
-export class SignupComponent {
-  constructor(private _AuthService:AuthService, private _Router:Router){}
+export class SignupComponent implements OnInit {
+
+  constructor(private _AuthService:AuthService, private _Router:Router){
+
+  }
+
+  ngOnInit(): void {
+    if(localStorage.getItem("userToken") !== null) {
+      this._Router.navigate(["/home"]);
+    }
+  }
+
   isLoading: boolean = false;
   errorMsg: string = '';
 
   registerForm: FormGroup = new FormGroup({
     name: new FormControl(null, [Validators.required, Validators.minLength(3)]),
     email: new FormControl(null, [Validators.required, Validators.pattern(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)]),
-    password: new FormControl(null, [Validators.required, Validators.pattern(/^[A-Z]\w{5,}/)]),
-    rePassword: new FormControl(null, [Validators.required, Validators.pattern(/^[A-Z]\w{5,}/)]),
+    password: new FormControl(null, [Validators.required, Validators.pattern(/^[A-Z].{5,}/)]),
+    rePassword: new FormControl(null, [Validators.required, Validators.pattern(/^[A-Z].{5,}/)]),
     phone: new FormControl(null, [Validators.required, Validators.pattern(/^01[0125][0-9]{8}$/)]),
   });
 

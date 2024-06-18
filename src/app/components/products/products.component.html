@@ -1,16 +1,10 @@
 
-<section class="home pb-5 pt-4">
+<section class="py-5">
 
-  <app-mainslider></app-mainslider>
-
-  <app-category-slider></app-category-slider>
-
-  <app-search></app-search>
-
-<!-- 
-  <div class="row g-4 py-5">
+  <div class="row g-4">
     <div *ngFor="let product of allProducts" class="col-sm-6 col-lg-4 col-xl-3">
-      <div class="product rounded-1 overflow-hidden">
+
+      <div class="product rounded-1 overflow-hidden text-color">
         <a [routerLink]="['/productdetails', product._id]" class="text-decoration-none text-color">
           <span class="heart"><i class="fa-regular fa-heart text-main fs-3"></i></span>
           <img [src]="product?.imageCover" class="card-img-top" alt="">
@@ -18,7 +12,7 @@
             <span class="text-main d-block mb-1">{{product?.category.name}}</span>
             <h4 class="fs-6 mb-3">{{product?.title.split(" ").slice(0, 3).join(" ")}}</h4>
             <div class="d-flex justify-content-between mb-2">
-              <div class="text-muted"><span></span>{{product?.price|currency:'EGP ':'symbol':'1.0-0'}}</div>
+              <div class="text-muted"><span>EGP </span>{{product?.price|currency:'EGP ':'symbol':'1.0-0'}}</div>
               <div class="">
                 <span><i class="fa-solid fa-star rating-color"></i></span>
                 <span> {{product?.ratingsAverage}}</span>
@@ -32,9 +26,6 @@
       </div>
 
     </div>
-  </div> -->
-
-  <button routerLink="/products" class="btn d-block mx-auto view-more">View More</button>
-  
+  </div>
 
 </section>

@@ -7,15 +7,20 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { BrandsComponent } from './components/brands/brands.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { authGuard } from './auth.guard';
+import { ProductsComponent } from './components/products/products.component';
+import { ProductdetailsComponent } from './components/productdetails/productdetails.component';
 
 const routes: Routes = [
   {path: "", redirectTo: "signup", pathMatch: "full"},
   {path: "signup", component: SignupComponent},
   {path: "login", component: LoginComponent},
-  {path: "home", component: HomeComponent},
-  {path: "cart", component: CartComponent},
-  {path: "brands", component: BrandsComponent},
-  {path: "categories", component: CategoriesComponent},
+  {path: "home", canActivate: [authGuard], component: HomeComponent},
+  {path: "products", canActivate: [authGuard], component: ProductsComponent},
+  {path: "productdetails/:id", canActivate: [authGuard], component: ProductdetailsComponent},
+  {path: "cart", canActivate: [authGuard], component: CartComponent},
+  {path: "brands", canActivate: [authGuard], component: BrandsComponent},
+  {path: "categories", canActivate: [authGuard], component: CategoriesComponent},
   {path: "**", component: NotfoundComponent},
 ];
 

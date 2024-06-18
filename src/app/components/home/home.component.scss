@@ -1,0 +1,12 @@
+.home {
+  .view-more {
+    background-color: transparent;
+    border: 1px solid var(--main-color);
+    color: var(--main-color);
+    transition: var(--main-transition);
+    &:hover {
+      background-color: var(--main-color);
+      color: white;
+    }
+  }
+}

@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+  styleUrl: './search.component.scss'
 })
-export class HomeComponent implements OnInit{
+export class SearchComponent implements OnInit{
   allProducts: any[] = [];
   constructor(private _ProductsService: ProductsService){
 
@@ -20,5 +20,4 @@ export class HomeComponent implements OnInit{
       }
     })
   }
-
 }

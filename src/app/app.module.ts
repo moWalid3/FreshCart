@@ -14,7 +14,14 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { SignupComponent } from './components/signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
-
+import { ProductsComponent } from './components/products/products.component';
+import { ProductdetailsComponent } from './components/productdetails/productdetails.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { MainsliderComponent } from './components/mainslider/mainslider.component';
+import { CategorySliderComponent } from './components/category-slider/category-slider.component';
+import { SearchPipe } from './pipes/search.pipe';
+import { SearchComponent } from './components/search/search.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,12 +33,20 @@ import { provideHttpClient } from '@angular/common/http';
     NotfoundComponent,
     LoginComponent,
     CategoriesComponent,
-    SignupComponent
+    SignupComponent,
+    ProductsComponent,
+    ProductdetailsComponent,
+    MainsliderComponent,
+    CategorySliderComponent,
+    SearchPipe,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    CarouselModule
   ],
   providers: [
     provideClientHydration(),

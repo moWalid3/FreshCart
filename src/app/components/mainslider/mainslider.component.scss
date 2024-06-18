@@ -1,0 +1,16 @@
+.main-slider {
+  .slider {
+    img {
+      height: 24rem; 
+      @media (max-width: 767.98px) { 
+        height: auto;
+      }
+      width: 100%;
+    }
+  }
+  .fixed-images {
+    img {
+      height: 12rem;
+    }
+  }
+}

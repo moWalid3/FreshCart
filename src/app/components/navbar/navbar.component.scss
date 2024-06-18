@@ -2,7 +2,7 @@ nav {
   a , i{
     transition: var(--main-transition);
     &:hover {
-      color: #21313C;
+      color: var(--text-color);
     }
   }
   i {

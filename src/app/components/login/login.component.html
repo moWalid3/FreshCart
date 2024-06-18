@@ -1,1 +1,46 @@
-<p>login works!</p>
+
+<div class="login w-75 mx-auto py-5 my-5">
+  <h3 class="mb-3">Login Now :</h3>
+
+  <div *ngIf="errorMsg" class="alert alert-danger">{{errorMsg}}</div>
+
+  <form (ngSubmit)="handleLogin(loginForm)" [formGroup]="loginForm">
+
+    <div class="mb-2">
+      <label for="loginEmail">Email :</label>
+      <input type="text" formControlName="email" id="loginEmail"
+        class="form-control shadow-sm" aria-describedby="validationLoginEmailFeedback"
+        [ngClass]="{
+          'is-invalid': loginForm.get('email')?.errors && loginForm.get('email')?.touched,
+          'is-valid': !loginForm.get('email')?.errors && loginForm.get('email')?.touched,
+        }"
+      >
+      <div id="validationLoginEmailFeedback" class="invalid-feedback">
+        <span *ngIf="loginForm.get('email')?.getError('pattern')">Invalid Email.</span>
+        <span *ngIf="loginForm.get('email')?.getError('required')">Email is required.</span>
+      </div>
+    </div>
+
+    <div class="mb-2">
+      <label for="loginPassword">Password :</label>
+      <input type="password" formControlName="password" id="loginPassword"
+        class="form-control shadow-sm" aria-describedby="validationLoginPasswordFeedback"
+        [ngClass]="{
+          'is-invalid': loginForm.get('password')?.errors && loginForm.get('password')?.touched,
+          'is-valid': !loginForm.get('password')?.errors && loginForm.get('password')?.touched,
+        }"
+      >
+      <div id="validationLoginPasswordFeedback" class="invalid-feedback">
+        <span *ngIf="loginForm.get('password')?.getError('pattern')">Start with uppercase and at least 6 characters.</span>
+        <span *ngIf="loginForm.get('password')?.getError('required')">Password is required.</span>
+      </div>
+    </div>
+
+    <button [disabled]="loginForm.invalid" type="submit" class="btn d-block ms-auto bg-main text-white">
+      <span *ngIf="isLoading" class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+      <span *ngIf="!isLoading">Login</span>
+    </button>
+
+  </form>
+
+</div>

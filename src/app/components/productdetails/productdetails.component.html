@@ -1,0 +1,40 @@
+
+<section class="py-5">
+  <div class="row row-gap-2 align-items-center">
+    <div class="col-2 col-lg-1 d-flex flex-column gap-3">
+      <img *ngFor="let img of productDetails?.images.slice(0, 4)" 
+            (click)="getSrc(img)" [src]="img" 
+            class="img-fluid light-border rounded-1 cursor-pointer" alt=""
+            [class.active-border]="img == currentCoverImageSrc"
+      >
+    </div>
+    <div class="col-10 col-lg-5">
+      <img [src]="currentCoverImageSrc" class="img-fluid" alt="">
+    </div>
+    <div class="col-lg-6">
+      <div class="info text-color fw-medium">
+        <p class="mb-2">Brand : <span class="text-muted fw-light"> {{productDetails?.brand.name}}</span></p>
+        <p class="mb-2">Category : <span class="text-muted fw-light"> {{productDetails?.category.name}}</span></p>
+        <p class="mb-3">Quantity : <span class="text-muted fw-light"> {{productDetails?.quantity}}</span></p>
+        <h3 class="mb-3 fw-semibold">{{productDetails?.title}}</h3>
+        <div class="rating mb-2">
+          <i *ngFor="let i of [1, 2, 3, 4, 5]"
+            [class.fa-solid]="productDetails?.ratingsAverage >= i"
+            class="fa-regular fa-star rating-color">
+          </i>
+          <span class="text-muted ps-1 pe-3 fw-light border-end"> {{productDetails?.ratingsAverage}}</span>
+          <span class="text-muted ps-3 pe-1  fw-light">{{productDetails?.ratingsQuantity}}</span>
+          <span class="text-muted fw-light">Reviewed</span>
+        </div>
+        <p class="text-muted fw-light">{{productDetails?.description}}</p>
+        <p class="fs-3">EGP {{productDetails?.price}}</p>
+        <button class="btn bg-main text-white me-2">
+          <i class="fa-solid fa-plus"></i> Add To Cart
+        </button>
+        <button class="btn bg-main text-white">
+          <i class="fa-regular fa-heart "></i> 
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
