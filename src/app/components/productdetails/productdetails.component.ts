@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { ActivatedRoute } from '@angular/router';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-productdetails',
@@ -10,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductdetailsComponent implements OnInit{
   productDetails:any;
   currentCoverImageSrc: string = '';
-  constructor(private _ProductsService: ProductsService, private _ActivatedRoute: ActivatedRoute){}
+  constructor(private _ProductsService: ProductsService, private _ActivatedRoute: ActivatedRoute, private _CartService: CartService){}
 
   ngOnInit(): void {
     let id: any;
@@ -27,5 +28,10 @@ export class ProductdetailsComponent implements OnInit{
 
   getSrc(src: string) {
     this.currentCoverImageSrc = src;
+  }
+
+  addToCart(id: string) {
+    this._CartService.addToCart(id).subscribe();
+
   }
 }

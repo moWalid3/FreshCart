@@ -12,7 +12,7 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
 import { LoginComponent } from './components/login/login.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { SignupComponent } from './components/signup/signup.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
 import { ProductsComponent } from './components/products/products.component';
 import { ProductdetailsComponent } from './components/productdetails/productdetails.component';
@@ -46,7 +46,8 @@ import { SearchComponent } from './components/search/search.component';
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    CarouselModule
+    CarouselModule,
+    FormsModule
   ],
   providers: [
     provideClientHydration(),

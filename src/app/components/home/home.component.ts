@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit{
     this._ProductsService.getProducts(1).subscribe({
       next: (res)=> {
         this.allProducts = res.data;
-        this.allProducts = this.allProducts.reverse().slice(0, 16);
+        this.allProducts = this.allProducts.reverse();
       }
     })
   }

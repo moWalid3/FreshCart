@@ -1,13 +1,17 @@
 
-<h3 class="main-title fw-bold ps-3 mb-2 fs-5">Shop Popular Categories</h3>
-<owl-carousel-o [options]="customOptions">
+<section class="mb-5">
 
-  <ng-container *ngFor="let category of categories">
-    <ng-template carouselSlide>
-      <img height="200" [src]="category.image" class="object-fit-cover" [alt]="category.name">
-      <p class="mb-0 mt-1">{{category.name}}</p>
-    </ng-template>
-  </ng-container>
+  <h3 class="main-title fw-bold ps-3 fs-5">Shop Popular Categories</h3>
+  <owl-carousel-o [options]="customOptions">
 
-</owl-carousel-o>
+    <ng-container *ngFor="let category of categories">
+      <ng-template carouselSlide>
+        <img height="200" [src]="category.image" class="object-fit-cover" [alt]="category.name">
+        <p class="mb-0 mt-1">{{category.name}}</p>
+      </ng-template>
+    </ng-container>
+
+  </owl-carousel-o>
+
+</section>
 

@@ -9,7 +9,7 @@
       >
     </div>
     <div class="col-10 col-lg-5">
-      <img [src]="currentCoverImageSrc" class="img-fluid" alt="">
+      <img [src]="currentCoverImageSrc" class="img-fluid w-100" alt="">
     </div>
     <div class="col-lg-6">
       <div class="info text-color fw-medium">
@@ -28,7 +28,7 @@
         </div>
         <p class="text-muted fw-light">{{productDetails?.description}}</p>
         <p class="fs-3">EGP {{productDetails?.price}}</p>
-        <button class="btn bg-main text-white me-2">
+        <button (click)="addToCart(productDetails._id)" class="btn bg-main text-white me-2">
           <i class="fa-solid fa-plus"></i> Add To Cart
         </button>
         <button class="btn bg-main text-white">

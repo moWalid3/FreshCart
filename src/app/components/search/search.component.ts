@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-search',
@@ -7,17 +8,18 @@ import { ProductsService } from '../../services/products.service';
   styleUrl: './search.component.scss'
 })
 export class SearchComponent implements OnInit{
-  allProducts: any[] = [];
-  constructor(private _ProductsService: ProductsService){
+  @Input() allProducts: any[] = [];
 
-  }
+  searchTerm : string = "";
+  constructor( private _CartService: CartService){}
 
   ngOnInit(): void {
-    this._ProductsService.getProducts(1).subscribe({
-      next: (res)=> {
-        this.allProducts = res.data;
-        this.allProducts = this.allProducts.reverse().slice(0, 16);
-      }
-    })
+
   }
+
+  addToCart(id: string) {
+    this._CartService.addToCart(id).subscribe();
+  }
+
+
 }
