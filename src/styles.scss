@@ -57,6 +57,7 @@ input {
   transition: var(--main-transition);
   border-color: var(--border-color) !important;
   background-color: rgb(255, 255, 255, .2) !important;
+  caret-color: var(--main-color);
   &:focus {
     border-color: var(--main-color) !important;
     &::placeholder {

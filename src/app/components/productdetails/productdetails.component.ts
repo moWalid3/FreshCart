@@ -31,7 +31,9 @@ export class ProductdetailsComponent implements OnInit{
   }
 
   addToCart(id: string) {
-    this._CartService.addToCart(id).subscribe();
+    this._CartService.addToCart(id).subscribe({
+      next: (res) => this._CartService.numberOfCartItems.next(res.numOfCartItems)
+    });
 
   }
 }

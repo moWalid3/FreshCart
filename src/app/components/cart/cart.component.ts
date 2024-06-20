@@ -18,8 +18,6 @@ export class CartComponent implements OnInit{
         this.cartProducts = res.data.products;
         this.totalPrice = res.data.totalCartPrice;
         this.numberOfProducts = this.cartProducts.length;
-        console.log(this.numberOfProducts);
-
       },
       error : err => console.log(err)
     });
@@ -27,19 +25,17 @@ export class CartComponent implements OnInit{
 
   clearCart(cartBox: HTMLElement) {
     this._CartService.clearCart().subscribe();
+    this._CartService.numberOfCartItems.next(0);
     cartBox.remove();
     this.totalPrice = 0;
     this.numberOfProducts = 0;
-    console.log(this.numberOfProducts);
   }
   
   removeProduct(id: string, price: number, countEle: HTMLElement) {
-    this._CartService.removeProduct(id).subscribe();
+    this._CartService.removeProduct(id).subscribe((res)=> this._CartService.numberOfCartItems.next(res.numOfCartItems));
     document.getElementById(id)?.remove();
     this.totalPrice -= (price * (+countEle.innerHTML));
     this.numberOfProducts--;
-    console.log(this.numberOfProducts);
-
   }
 
   updateProductQuantity(id: string, price: number, operation: string, countEle: HTMLElement) {

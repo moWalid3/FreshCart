@@ -33,7 +33,7 @@
     <!-- <button [disabled]="totalPrice == 0" class="btn bg-main text-white mt-4">
       Checkout
     </button> -->
-    <button [disabled]="totalPrice == 0" class="btn bg-main py-2 px-3 text-white mt-4 d-flex align-items-center">
+    <button routerLink="/checkout" [disabled]="totalPrice == 0" class="btn bg-main py-2 px-3 text-white mt-4 d-flex align-items-center">
       <span class="me-2">Checkout</span>
       <img src="checkout.svg" width="30" alt="">
     </button>

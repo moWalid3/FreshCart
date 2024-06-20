@@ -10,6 +10,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { authGuard } from './auth.guard';
 import { ProductsComponent } from './components/products/products.component';
 import { ProductdetailsComponent } from './components/productdetails/productdetails.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 const routes: Routes = [
   {path: "", redirectTo: "signup", pathMatch: "full"},
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: "products", canActivate: [authGuard], component: ProductsComponent},
   {path: "productdetails/:id", canActivate: [authGuard], component: ProductdetailsComponent},
   {path: "cart", canActivate: [authGuard], component: CartComponent},
+  {path: "checkout", canActivate: [authGuard], component: CheckoutComponent},
   {path: "brands", canActivate: [authGuard], component: BrandsComponent},
   {path: "categories", canActivate: [authGuard], component: CategoriesComponent},
   {path: "**", component: NotfoundComponent},

@@ -1,5 +1,6 @@
+import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID, afterNextRender } from '@angular/core';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -8,18 +9,19 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private isLocalStorageAvailable = typeof localStorage !== 'undefined';
-  userData = new BehaviorSubject(null);
 
-  constructor(private _HttpClient:HttpClient, private _Router:Router) { 
+  userData: any = new BehaviorSubject(null);
 
-    // now you can use localStorage in constructor
-    if (this.isLocalStorageAvailable) {
-      // code here
+  constructor(private _HttpClient:HttpClient, private _Router:Router, @Inject(PLATFORM_ID) private platformId: any) { 
+
+    if (isPlatformBrowser(platformId)){
+
       if(localStorage.getItem("userToken") !== null) {
         this.decodeUserData();
       }
+      
     }
+    
   }
 
   decodeUserData() {

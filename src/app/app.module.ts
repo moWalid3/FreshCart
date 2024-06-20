@@ -22,6 +22,7 @@ import { MainsliderComponent } from './components/mainslider/mainslider.componen
 import { CategorySliderComponent } from './components/category-slider/category-slider.component';
 import { SearchPipe } from './pipes/search.pipe';
 import { SearchComponent } from './components/search/search.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +40,8 @@ import { SearchComponent } from './components/search/search.component';
     MainsliderComponent,
     CategorySliderComponent,
     SearchPipe,
-    SearchComponent
+    SearchComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,

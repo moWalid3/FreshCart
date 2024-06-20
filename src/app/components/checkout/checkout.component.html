@@ -1,0 +1,62 @@
+
+<section class="py-5 w-75 mx-auto">
+  <h3 class="mb-3">Checkout Now :</h3>
+
+  <form (ngSubmit)="handleCheckout(checkoutForm)" [formGroup]="checkoutForm">
+
+    <div class="mb-2">
+      <label for="address">Address :</label>
+      <input formControlName="details" type="text" id="address" placeholder="Your address"
+        [ngClass]="{
+          'is-valid': !checkoutForm.get('details')?.errors && checkoutForm.get('details')?.touched,
+          'is-invalid': checkoutForm.get('details')?.errors && checkoutForm.get('details')?.touched,
+        }"
+        class="form-control shadow-sm" aria-describedby="validationAddressFeedback"
+      >
+      <div id="validationAddressFeedback" class="invalid-feedback">
+        <span *ngIf="checkoutForm.get('details')?.getError('required')">Address is required.</span>
+      </div>
+    </div>
+
+    <div class="mb-2">
+      <label for="phone">Phone :</label>
+      <input formControlName="phone" type="tel" id="phone" placeholder="Your phone"
+        [ngClass]="{
+          'is-valid': !checkoutForm.get('phone')?.errors && checkoutForm.get('phone')?.touched,
+          'is-invalid': checkoutForm.get('phone')?.errors && checkoutForm.get('phone')?.touched,
+        }"
+        class="form-control shadow-sm" aria-describedby="validationPhoneFeedback"
+      >
+      <div id="validationPhoneFeedback" class="invalid-feedback">
+        <span *ngIf="checkoutForm.get('phone')?.getError('required')">Phone is required.</span>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label for="city">City :</label>
+      <input formControlName="city" type="text" id="city" placeholder="Your city"
+        [ngClass]="{
+          'is-valid': !checkoutForm.get('city')?.errors && checkoutForm.get('city')?.touched,
+          'is-invalid': checkoutForm.get('city')?.errors && checkoutForm.get('city')?.touched,
+        }"
+        class="form-control shadow-sm" aria-describedby="validationCityFeedback"
+      >
+      <div id="validationCityFeedback" class="invalid-feedback">
+        <span *ngIf="checkoutForm.get('city')?.getError('required')">City is required.</span>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between">
+      <button [disabled]="checkoutForm.invalid" class="btn d-block bg-main text-white">
+        <span class="me-1">Pay On Delivery</span>
+        <i class="fa-solid fa-truck"></i>
+      </button>
+  
+      <button [disabled]="checkoutForm.invalid" type="submit" class="btn d-block bg-main text-white">
+        <span class="me-1">Pay Online</span>
+        <img src="visa.svg" width="35" alt="">
+      </button>
+    </div>
+  </form>
+
+</section>

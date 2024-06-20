@@ -1,5 +1,5 @@
 nav {
-  a , i{
+  a , i:not(.fa-cart-shopping){
     transition: var(--main-transition);
     &:hover {
       color: var(--text-color);
