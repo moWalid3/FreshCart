@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-brands',
@@ -9,22 +10,13 @@ import { ProductsService } from '../../services/products.service';
 export class BrandsComponent implements OnInit {
   brands: any;
   allProducts: any = [];
-  constructor(private _ProductsService: ProductsService){}
+  constructor(private _ProductsService: ProductsService, private spinner: NgxSpinnerService){}
 
   ngOnInit(): void {
+    this.spinner.show();
     this._ProductsService.getBrands().subscribe({
-      next: (res)=> this.brands = res.data
+      next: (res)=> this.brands = res.data,
+      complete: ()=> this.spinner.hide()
     })
-    
-    // this._ProductsService.getProducts(2).subscribe({
-    //   next: (res)=> {
-    //     this._ProductsService.getProducts(1).subscribe({
-    //       next: (res)=> {
-    //         this.allProducts.push(...res.data);
-    //       }
-    //     })  
-    //     this.allProducts.push(...res.data);
-    //   }
-    // })
   }
 }

@@ -1,0 +1,64 @@
+
+<section *ngIf="numberOfProducts > 0 else emptyWishlist" class="py-5 my-5">
+  <h3 class="fw-bold alt-title pb-2 text-center mb-4">Your Wishlist</h3>
+    
+    <div class="table-responsive">
+      <table class="table light-border table-striped text-center table-responsive-md">
+        <thead class="bg-main text-white">
+          <th></th>
+          <th class="fw-normal py-1">Product</th>
+          <th class="fw-normal py-1">Price</th>
+          <th class="fw-normal py-1">Rate</th>
+          <th></th>
+        </thead>
+        <tbody>
+          <tr #wishlistProduct *ngFor="let product of wishlistProducts">
+            <td class="align-middle">
+              <img [src]="product.imageCover" width="50" [alt]="product.title">
+            </td>
+            <td class="align-middle">
+              <span>{{product.title.split(" ").slice(0, 2).join(" ")}}</span>
+            </td>
+            <td class="align-middle">
+              <span>{{product.price |currency:'EGP '}}</span>
+            </td>
+            <td class="align-middle">
+              <div class="rating mb-2">
+                <i *ngFor="let i of [1, 2, 3, 4, 5]"
+                  [class.fa-solid]="product?.ratingsAverage >= i"
+                  class="fa-regular fa-star rating-color">
+                </i>
+                <span class="text-muted fw-light "> {{product?.ratingsAverage}}</span>
+              </div>
+            </td>
+            <td class="align-middle">
+
+                <button (click)="addToCart(product._id)"  class="btn me-0 me-lg-1 mb-1 mb-lg-0 bg-main text-white">
+                  <span class="me-1">Add To Cart</span>
+                  <i class="fa-solid fa-cart-arrow-down"></i>
+                </button>
+                <button (click)="removeFromWishlist(product._id, wishlistProduct)"  class="btn bg-danger text-white">
+                  <span class="me-1">Remove</span>
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>
+
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    
+  </div>
+</section>
+
+<ng-template #emptyWishlist>
+  <div class="py-5 my-5 text-center">
+    <div class="image w-50 mb-5 mx-auto">
+      <img  class="img-fluid " src="empty_wishlist.svg" alt="">
+    </div>
+    <h3 class="fw-bold  text-center mb-3">Your Wishlist Is Empty</h3>
+    <button routerLink="/products" class="btn bg-main text-white d-block mx-auto">
+      Continue Shopping
+    </button>
+  </div>
+</ng-template>

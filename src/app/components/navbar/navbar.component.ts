@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { CartService } from '../../services/cart.service';
+import { WishlistService } from '../../services/wishlist.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +11,8 @@ import { CartService } from '../../services/cart.service';
 export class NavbarComponent implements OnInit {
   isLogin = false;
   numberOfCartItems: number = 0;
-  constructor(private _AuthService:AuthService , private _CartService : CartService){
+  numberOfWishlistItems: number = 0;
+  constructor(private _AuthService:AuthService , private _CartService : CartService, private _WishlistService: WishlistService){
     
   }
   
@@ -27,6 +29,7 @@ export class NavbarComponent implements OnInit {
     })
     
     this._CartService.numberOfCartItems.subscribe((value)=> this.numberOfCartItems = value);
+    this._WishlistService.numberOfWishlistItems.subscribe((value)=> this.numberOfWishlistItems = value);
     
   }
 

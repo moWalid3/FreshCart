@@ -1,9 +1,17 @@
 
 .cart {
+  img {
+    max-width: 9.375rem;
+    @media (max-width: 480px) {
+      max-width: 7rem;
+    }
+
+  }
   .remove-btn {
     width: fit-content;
   }
   .controls {
+    width: fit-content;
     button {
       border: 1px solid var(--border-color);
       color: var(--main-color) !important;

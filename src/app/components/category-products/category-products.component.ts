@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { ActivatedRoute } from '@angular/router';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-category-products',
@@ -14,10 +15,10 @@ export class CategoryProductsComponent implements OnInit {
   categoryId: any = '';
   categoryName: any = '';
 
-  constructor(private _ProductsService: ProductsService, private _ActivatedRoute: ActivatedRoute){}
+  constructor(private _ProductsService: ProductsService, private _ActivatedRoute: ActivatedRoute, private spinner: NgxSpinnerService){}
 
   ngOnInit(): void {
-
+    this.spinner.show();
     this._ActivatedRoute.paramMap.subscribe( params => this.categoryId = params.get('id')); 
 
     this._ProductsService.getSpecificCategory(this.categoryId).subscribe({
@@ -31,9 +32,10 @@ export class CategoryProductsComponent implements OnInit {
           next: (res)=> {
             this.allProducts.push(...res.data);
             this.getFinalProducts();
-          }
+          },
+          complete: ()=> this.spinner.hide()
         })  
-      }
+      },
     })
     
   }

@@ -26,6 +26,16 @@
       </ul>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li *ngIf="isLogin" class="nav-item me-2">
+          <a class="nav-link" routerLink="wishlist">
+            <div class="position-relative">
+              <i class="fa-solid fs-4 text-main  fa-heart-circle-check"></i>
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                {{numberOfWishlistItems}}
+              </span>
+            </div>
+          </a>
+        </li>
+        <li *ngIf="isLogin" class="nav-item me-2">
           <a class="nav-link" routerLink="cart">
             <div class="position-relative">
               <i class="fa-solid fs-4 text-main fa-cart-shopping"></i>

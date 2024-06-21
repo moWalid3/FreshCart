@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrdersService } from '../../services/orders.service';
 import { CartService } from '../../services/cart.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-orders',
@@ -8,7 +9,7 @@ import { CartService } from '../../services/cart.service';
   styleUrl: './orders.component.scss'
 })
 export class OrdersComponent implements OnInit {
-  constructor(private _OrdersService: OrdersService, private _CartService: CartService){}
+  constructor(private _OrdersService: OrdersService, private _CartService: CartService, private spinner: NgxSpinnerService){}
 
   cartOwner: any = '';
   allOrders: any[] = []; 
@@ -19,6 +20,7 @@ export class OrdersComponent implements OnInit {
   }
 
   getCartOwner() {
+    this.spinner.show();
     this._CartService.getCart().subscribe({
       next: (res) => {
         this.cartOwner =  res.data.cartOwner;
@@ -39,7 +41,8 @@ export class OrdersComponent implements OnInit {
     this._OrdersService.getOrders(cartOwner).subscribe({
       next: res => {
         this.allOrders = res;
-      }
+      },
+      complete: ()=> this.spinner.hide()
     })
   }
 }

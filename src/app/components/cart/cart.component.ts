@@ -1,5 +1,7 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
+import { NgxSpinnerService } from "ngx-spinner";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cart',
@@ -10,20 +12,26 @@ export class CartComponent implements OnInit{
   cartProducts : any[] = [];
   totalPrice: number = 0;
   numberOfProducts: number = 0;
-  constructor(private _CartService: CartService) {}
+  constructor(private _CartService: CartService, private spinner: NgxSpinnerService, private toastr: ToastrService) {}
 
   ngOnInit(): void {
+    this.spinner.show();
     this._CartService.getCart().subscribe({
       next: (res) => {
         this.cartProducts = res.data.products;
         this.totalPrice = res.data.totalCartPrice;
         this.numberOfProducts = this.cartProducts.length;
+        this.spinner.hide();
       },
-      error : err => console.log(err)
+      error : err => {
+        console.log(err);
+        this.spinner.hide();
+      }
     });
   }
 
   clearCart(cartBox: HTMLElement) {
+    this.toastr.success('Products removed successfully from your cart.');
     this._CartService.clearCart().subscribe();
     this._CartService.numberOfCartItems.next(0);
     cartBox.remove();
@@ -32,6 +40,7 @@ export class CartComponent implements OnInit{
   }
   
   removeProduct(id: string, price: number, countEle: HTMLElement) {
+    this.toastr.success('Product removed successfully from your cart.');
     this._CartService.removeProduct(id).subscribe((res)=> this._CartService.numberOfCartItems.next(res.numOfCartItems));
     document.getElementById(id)?.remove();
     this.totalPrice -= (price * (+countEle.innerHTML));

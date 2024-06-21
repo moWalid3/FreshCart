@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { ActivatedRoute } from '@angular/router';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-brand-products',
@@ -13,10 +14,10 @@ export class BrandProductsComponent {
   brandId: any = '';
   brandName: any = '';
 
-  constructor(private _ProductsService: ProductsService, private _ActivatedRoute: ActivatedRoute){}
+  constructor(private _ProductsService: ProductsService, private _ActivatedRoute: ActivatedRoute, private spinner: NgxSpinnerService){}
 
   ngOnInit(): void {
-
+    this.spinner.show();
     this._ActivatedRoute.paramMap.subscribe( params => this.brandId = params.get('id')); 
 
     this._ProductsService.getSpecificBrand(this.brandId).subscribe({
@@ -30,7 +31,8 @@ export class BrandProductsComponent {
           next: (res)=> {
             this.allProducts.push(...res.data);
             this.getFinalProducts();
-          }
+          },
+          complete: ()=> this.spinner.hide()
         })  
       }
     })

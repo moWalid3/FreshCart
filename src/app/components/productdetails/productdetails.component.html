@@ -31,8 +31,12 @@
         <button (click)="addToCart(productDetails._id)" class="btn bg-main text-white me-2">
           <i class="fa-solid fa-plus"></i> Add To Cart
         </button>
-        <button class="btn bg-main text-white">
-          <i class="fa-regular fa-heart "></i> 
+        <button #heartIcon (click)="handleWishlist(heartIcon, productDetails._id)" class="btn main-border">
+          <i [ngClass]="
+            {'fa-solid': isOnWishlist,
+              'fa-regular': !isOnWishlist
+            }" 
+            class=" fa-heart text-main"></i>
         </button>
       </div>
     </div>

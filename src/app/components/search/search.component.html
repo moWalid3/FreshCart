@@ -4,11 +4,17 @@
   
   <h3 class="main-title fw-bold ps-3 fs-5">Products</h3>
   <div class="row g-4">
-    <div *ngIf="allProducts.length == 0" class="alert alert-info fs-5 mt-5 mb-3">Products not found in fresh market database</div>
+    <div *ngIf="allProducts.length == 0" class="alert bg-main-light shadow-sm fs-5 mt-5 mb-5">Products not found in fresh market database</div>
     <div *ngFor="let product of allProducts|search:searchTerm" class="col-sm-6 col-lg-4 col-xl-3">
       <div class="product rounded-1 overflow-hidden bg-white">
+        <span #heartIcon (click)="handleWishlist(heartIcon, product._id)" class="heart">
+          <i [ngClass]="
+            {'fa-solid': isItOnTheWishlist(product._id),
+              'fa-regular': !isItOnTheWishlist(product._id),
+            }" 
+            class=" fa-heart text-main fs-3"></i>
+        </span>
         <a [routerLink]="['/productdetails', product._id]" class="text-decoration-none text-color">
-          <span class="heart"><i class="fa-regular fa-heart text-main fs-3"></i></span>
           <img [src]="product?.imageCover" class="card-img-top" alt="">
           <div class="p-3 ">
             <span class="text-main d-block mb-1">{{product?.category.name}}</span>

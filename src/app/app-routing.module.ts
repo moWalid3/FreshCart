@@ -14,6 +14,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { CategoryProductsComponent } from './components/category-products/category-products.component';
 import { BrandProductsComponent } from './components/brand-products/brand-products.component';
 import { OrdersComponent } from './components/orders/orders.component';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
 
 const routes: Routes = [
   {path: "", redirectTo: "signup", pathMatch: "full"},
@@ -29,6 +30,7 @@ const routes: Routes = [
   {path: "cart", canActivate: [authGuard], component: CartComponent},
   {path: "checkout", canActivate: [authGuard], component: CheckoutComponent},
   {path: "orders", canActivate: [authGuard], component: OrdersComponent},
+  {path: "wishlist", canActivate: [authGuard], component: WishlistComponent},
   {path: "**", component: NotfoundComponent},
 ];
 

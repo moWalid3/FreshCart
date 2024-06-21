@@ -1,7 +1,8 @@
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable, PLATFORM_ID, afterNextRender } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,11 @@ export class CartService {
   numberOfCartItems = new BehaviorSubject(0);
   header: any = {};
   cartId: any = '';
-  constructor(private _HttpClient: HttpClient, @Inject(PLATFORM_ID) private platformId: any) {
+  constructor(
+    private _HttpClient: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: any,
+    private spinner: NgxSpinnerService
+    ) {
 
     if (isPlatformBrowser(platformId)){
       this.header = {
@@ -19,11 +24,14 @@ export class CartService {
       };
     }
 
+    this.spinner.show();
     this.getCart().subscribe({
       next: (res) => {
         this.numberOfCartItems.next(res.numOfCartItems);
         this.cartId = res.data._id;
-      }
+        this.spinner.hide();
+      },
+      error: (err)=> this.spinner.hide()
     })
 
   }

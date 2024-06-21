@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CartService } from '../../services/cart.service';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-checkout',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrl: './checkout.component.scss'
 })
 export class CheckoutComponent implements OnInit{
-  constructor(private _CartService: CartService, private _Router: Router){}
+  constructor(private _CartService: CartService, private _Router: Router, private spinner: NgxSpinnerService){}
 
   ngOnInit(): void {
     this._CartService.getCart().subscribe({
@@ -38,13 +39,14 @@ export class CheckoutComponent implements OnInit{
   }
 
   cashOrder(checkoutForm: FormGroup) {
+    this.spinner.show();
     let shippingAddress = checkoutForm.value;
-
     this._CartService.cashOrder(shippingAddress).subscribe({
       next : (res) => {
         this._CartService.numberOfCartItems.next(0);
         this._Router.navigate(['/orders']);
-      }
+      },
+      complete: ()=> this.spinner.hide()
     })
   }
 

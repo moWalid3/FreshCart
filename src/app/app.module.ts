@@ -26,6 +26,9 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { CategoryProductsComponent } from './components/category-products/category-products.component';
 import { BrandProductsComponent } from './components/brand-products/brand-products.component';
 import { OrdersComponent } from './components/orders/orders.component';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,8 @@ import { OrdersComponent } from './components/orders/orders.component';
     CheckoutComponent,
     CategoryProductsComponent,
     BrandProductsComponent,
-    OrdersComponent
+    OrdersComponent,
+    WishlistComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +60,12 @@ import { OrdersComponent } from './components/orders/orders.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     CarouselModule,
-    FormsModule
+    FormsModule,
+    NgxSpinnerModule.forRoot({ type: 'square-jelly-box' }),
+    ToastrModule.forRoot({
+      timeOut: 1100,
+      closeButton: true
+    }),
   ],
   providers: [
     provideClientHydration(),
