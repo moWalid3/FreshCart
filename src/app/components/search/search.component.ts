@@ -8,8 +8,8 @@ import { CartService } from '../../services/cart.service';
 })
 export class SearchComponent implements OnInit{
   @Input() allProducts: any[] = [];
-
-  searchTerm : string = "";
+  @Input() searchType: string = 'products';
+  @Input() searchTerm : string = "";
   constructor( private _CartService: CartService){}
 
   ngOnInit(): void {

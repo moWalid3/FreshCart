@@ -121,3 +121,18 @@ input.is-valid {
     background-color: var(--main-color);
   }
 }
+
+.alt-title {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    height: .25rem;
+    width: 5rem;
+    border-radius: 50rem;
+    background-color: var(--main-color);
+  }
+}

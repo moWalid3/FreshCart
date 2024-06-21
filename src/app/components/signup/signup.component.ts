@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, AbstractControlOptions, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
@@ -29,7 +29,19 @@ export class SignupComponent implements OnInit {
     password: new FormControl(null, [Validators.required, Validators.pattern(/^[A-Z].{5,}/)]),
     rePassword: new FormControl(null, [Validators.required, Validators.pattern(/^[A-Z].{5,}/)]),
     phone: new FormControl(null, [Validators.required, Validators.pattern(/^01[0125][0-9]{8}$/)]),
-  });
+  }, {validators: this.rePasswordMatch});
+
+
+  rePasswordMatch(registerForm: any) {
+    let passwordControl = registerForm.get('password');
+    let rePasswordControl = registerForm.get('rePassword');
+    if(passwordControl.value === rePasswordControl.value) {
+      return null; // matched
+    } else {
+      rePasswordControl.setErrors({passwordmatch: "password and repassword don't match"});
+      return {passwordmatch: "password and repassword don't match"};
+    }
+  }
 
   handleRegister(registerForm: FormGroup) {
     this.isLoading = true;

@@ -1,8 +1,8 @@
 
-<section class="py-5 w-75 mx-auto">
+<section class="py-5 my-5 w-75 mx-auto">
   <h3 class="mb-3">Checkout Now :</h3>
 
-  <form (ngSubmit)="handleCheckout(checkoutForm)" [formGroup]="checkoutForm">
+  <form  [formGroup]="checkoutForm">
 
     <div class="mb-2">
       <label for="address">Address :</label>
@@ -47,12 +47,12 @@
     </div>
 
     <div class="d-flex justify-content-between">
-      <button [disabled]="checkoutForm.invalid" class="btn d-block bg-main text-white">
+      <button (click)="cashOrder(checkoutForm)" [disabled]="checkoutForm.invalid" class="btn d-block bg-main text-white">
         <span class="me-1">Pay On Delivery</span>
         <i class="fa-solid fa-truck"></i>
       </button>
   
-      <button [disabled]="checkoutForm.invalid" type="submit" class="btn d-block bg-main text-white">
+      <button (click)="payOnline(checkoutForm)" [disabled]="checkoutForm.invalid" type="submit" class="btn d-block bg-main text-white">
         <span class="me-1">Pay Online</span>
         <img src="visa.svg" width="35" alt="">
       </button>

@@ -23,6 +23,10 @@ import { CategorySliderComponent } from './components/category-slider/category-s
 import { SearchPipe } from './pipes/search.pipe';
 import { SearchComponent } from './components/search/search.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { CategoryProductsComponent } from './components/category-products/category-products.component';
+import { BrandProductsComponent } from './components/brand-products/brand-products.component';
+import { OrdersComponent } from './components/orders/orders.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +45,10 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     CategorySliderComponent,
     SearchPipe,
     SearchComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    CategoryProductsComponent,
+    BrandProductsComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,

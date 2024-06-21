@@ -11,6 +11,9 @@ import { authGuard } from './auth.guard';
 import { ProductsComponent } from './components/products/products.component';
 import { ProductdetailsComponent } from './components/productdetails/productdetails.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { CategoryProductsComponent } from './components/category-products/category-products.component';
+import { BrandProductsComponent } from './components/brand-products/brand-products.component';
+import { OrdersComponent } from './components/orders/orders.component';
 
 const routes: Routes = [
   {path: "", redirectTo: "signup", pathMatch: "full"},
@@ -19,10 +22,13 @@ const routes: Routes = [
   {path: "home", canActivate: [authGuard], component: HomeComponent},
   {path: "products", canActivate: [authGuard], component: ProductsComponent},
   {path: "productdetails/:id", canActivate: [authGuard], component: ProductdetailsComponent},
+  {path: "brands", canActivate: [authGuard], component: BrandsComponent},
+  {path: "brandProducts/:id", canActivate: [authGuard], component: BrandProductsComponent},
+  {path: "categories", canActivate: [authGuard], component: CategoriesComponent},
+  {path: "categoryProducts/:id", canActivate: [authGuard], component: CategoryProductsComponent},
   {path: "cart", canActivate: [authGuard], component: CartComponent},
   {path: "checkout", canActivate: [authGuard], component: CheckoutComponent},
-  {path: "brands", canActivate: [authGuard], component: BrandsComponent},
-  {path: "categories", canActivate: [authGuard], component: CategoriesComponent},
+  {path: "orders", canActivate: [authGuard], component: OrdersComponent},
   {path: "**", component: NotfoundComponent},
 ];
 

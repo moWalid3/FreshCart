@@ -10,7 +10,7 @@ export class CartService {
 
   numberOfCartItems = new BehaviorSubject(0);
   header: any = {};
-
+  cartId: any = '';
   constructor(private _HttpClient: HttpClient, @Inject(PLATFORM_ID) private platformId: any) {
 
     if (isPlatformBrowser(platformId)){
@@ -22,7 +22,8 @@ export class CartService {
     this.getCart().subscribe({
       next: (res) => {
         this.numberOfCartItems.next(res.numOfCartItems);
-      },
+        this.cartId = res.data._id;
+      }
     })
 
   }
@@ -67,8 +68,19 @@ export class CartService {
     );
   }
 
-  payOnline(cartId: string, shippingAddress: object): Observable<any> {
-    return this._HttpClient.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=http://localhost:4200`,
+  payOnline(shippingAddress: object): Observable<any> {
+    return this._HttpClient.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${this.cartId}?url=http://localhost:4200`,
+      {
+        shippingAddress: shippingAddress
+      },
+      {
+        headers: this.header
+      }
+    )
+  }
+
+  cashOrder(shippingAddress: object): Observable<any> {
+    return this._HttpClient.post(`https://ecommerce.routemisr.com/api/v1/orders/${this.cartId}`,
       {
         shippingAddress: shippingAddress
       },

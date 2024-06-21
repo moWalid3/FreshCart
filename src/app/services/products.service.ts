@@ -16,10 +16,22 @@ export class ProductsService {
   }
 
   getSpecificProduct(id: string): Observable<any> {
-    return this._HttpClient.get(`https://ecommerce.routemisr.com/api/v1/products/${id}`)
+    return this._HttpClient.get(`https://ecommerce.routemisr.com/api/v1/products/${id}`);
   } 
 
   getCategories(): Observable<any> {
-    return this._HttpClient.get(`https://ecommerce.routemisr.com/api/v1/categories`)
+    return this._HttpClient.get(`https://ecommerce.routemisr.com/api/v1/categories`);
+  } 
+
+  getSpecificCategory(id: string): Observable<any> {
+    return this._HttpClient.get(`https://ecommerce.routemisr.com/api/v1/categories/${id}`);
+  } 
+
+  getBrands(): Observable<any> {
+    return this._HttpClient.get(`https://ecommerce.routemisr.com/api/v1/brands`);
+  }
+
+  getSpecificBrand(id: string): Observable<any> {
+    return this._HttpClient.get(`https://ecommerce.routemisr.com/api/v1/brands/${id}`);
   } 
 }

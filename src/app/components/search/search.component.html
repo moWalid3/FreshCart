@@ -1,10 +1,10 @@
-<section class="mb-5">
+<section  class="mb-5">
   
-  <input [(ngModel)]="searchTerm" type="text" class="form-control w-75 mx-auto shadow-none mb-5" placeholder="Search By Name ..." />
+  <input *ngIf="searchType === 'products'" [(ngModel)]="searchTerm" type="text" class="form-control w-75 mx-auto shadow-none mb-5" placeholder="Search By Name ..." />
   
-
   <h3 class="main-title fw-bold ps-3 fs-5">Products</h3>
   <div class="row g-4">
+    <div *ngIf="allProducts.length == 0" class="alert alert-info fs-5 mt-5 mb-3">Products not found in fresh market database</div>
     <div *ngFor="let product of allProducts|search:searchTerm" class="col-sm-6 col-lg-4 col-xl-3">
       <div class="product rounded-1 overflow-hidden bg-white">
         <a [routerLink]="['/productdetails', product._id]" class="text-decoration-none text-color">

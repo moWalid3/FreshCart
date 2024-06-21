@@ -1,9 +1,16 @@
 
-<div class="row py-5 g-4 ">
+<section class="my-5 py-5">
+  
+<h3 class="main-title fw-bold ps-3 fs-5">Categories</h3>
+<div class="row  g-4">
   <div *ngFor="let category of categories" class="col-sm-6 col-md-4 col-lg-3">
-    <div class="rounded-1 light-border overflow-hidden cursor-pointer">
-      <img [src]="category.image" class="w-100 object-fit-cover" height="320" alt="">
-      <p class="mb-0 text-center py-3 text-main fw-medium">{{category.name}}</p>
+    <a [routerLink]="['/categoryProducts' , category._id]">
+      <div class="rounded-1 shadow-sm light-border overflow-hidden cursor-pointer">
+        <img [src]="category.image" class="w-100 object-fit-cover" height="320" alt="">
+        <p class="mb-0 text-center py-3 text-main fw-medium">{{category.name}}</p>
+      </div>
+    </a>
     </div>
-  </div>
 </div>
+
+</section>

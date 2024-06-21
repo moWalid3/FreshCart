@@ -1,1 +1,14 @@
-<p>brands works!</p>
+
+<section class="my-5 py-5">
+  <h3 class="main-title fw-bold ps-3 fs-5">Brands</h3>
+  <div class="row g-3">
+    <div *ngFor="let brand of brands" class="col-6 col-sm-4 col-lg-2 bg-white">
+      <a [routerLink]="['/brandProducts', brand._id]">
+        <div class="rounded-1 light-border shadow-sm overflow-hidden cursor-pointer">
+          <img [src]="brand.image" class="w-100 object-fit-cover" alt="">
+          <p class="mb-0 text-center py-3 text-main fw-medium">{{brand.name}}</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
