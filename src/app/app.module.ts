@@ -63,7 +63,7 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     NgxSpinnerModule.forRoot({ type: 'square-jelly-box' }),
     ToastrModule.forRoot({
-      timeOut: 1100,
+      timeOut: 1500,
       closeButton: true
     }),
   ],

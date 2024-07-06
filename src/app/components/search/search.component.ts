@@ -22,7 +22,6 @@ export class SearchComponent implements OnInit{
         this.wishlistProducts = res.data;
       }
     })
-
   }
 
   addToCart(id: string) {

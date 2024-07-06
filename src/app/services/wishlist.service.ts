@@ -10,22 +10,26 @@ export class WishlistService {
   numberOfWishlistItems = new BehaviorSubject(0);
   header: any = {};
   wishlistProducts: any[] = [];
+
   constructor(
     private _HttpClient: HttpClient,
     @Inject(PLATFORM_ID) private platformId: any
   ) {
     if (isPlatformBrowser(platformId)) {
-      this.header = {
-        token: localStorage.getItem('userToken'),
-      };
-    }
+      if('userToken' in localStorage) {
+        this.header = {
+          token: localStorage.getItem('userToken'),
+        };
 
-    this.getWishlist().subscribe({
-      next: (res) => {
-        this.numberOfWishlistItems.next(res.count);
-        this.wishlistProducts = res.data;
+        this.getWishlist().subscribe({
+          next: (res) => {
+            this.numberOfWishlistItems.next(res.count);
+            this.wishlistProducts = res.data;
+          }
+        })
+
       }
-    })
+    }
   }
 
   addToWishlist(id: string): Observable<any> {

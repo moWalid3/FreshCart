@@ -41,8 +41,9 @@ export class OrdersComponent implements OnInit {
     this._OrdersService.getOrders(cartOwner).subscribe({
       next: res => {
         this.allOrders = res;
+        this.spinner.hide();
       },
-      complete: ()=> this.spinner.hide()
+      error: ()=> this.spinner.hide()
     })
   }
 }
